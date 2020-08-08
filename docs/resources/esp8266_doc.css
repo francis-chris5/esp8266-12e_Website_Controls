@@ -36,6 +36,15 @@ header{
 }
 
 
+dl{
+	margin-left: 2.5em;
+	margin-right: 2.5em;
+}
+dt{
+	font-weight: bold;
+}
+
+
 footer{
 	clear: left;
 	text-align: center;
