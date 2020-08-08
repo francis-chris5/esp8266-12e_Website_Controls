@@ -27,7 +27,7 @@ function initializeBooleans(){
 		if(request.readyState == 4 && request.status == 200){
 			let results = request.responseText;
 			let payload = results.split(",");
-			//let p0 = parseInt(results.substring(results.indexOf('0') + 2, results.indexOf(']', results.indexOf('0') + 2)), 10);
+
 			if(payload[0] == 0){
 				D0 = false;
 			}
@@ -40,7 +40,6 @@ function initializeBooleans(){
 			setButtonColor("btn0", D0);
 			
 			
-			//let p1 = parseInt(results.substring(results.indexOf('1') + 2, results.indexOf(']', results.indexOf('1') + 2)), 10);
 			if(payload[1] == 0){
 				D1 = false;
 			}
@@ -53,7 +52,6 @@ function initializeBooleans(){
 			setButtonColor("btn1", D1);
 			
 			
-			//let p2 = parseInt(results.substring(results.indexOf('2') + 2, results.indexOf(']', results.indexOf('2') + 2)), 10);
 			if(payload[2] == 0){
 				D2 = false;
 			}
@@ -66,7 +64,6 @@ function initializeBooleans(){
 			setButtonColor("btn2", D2);
 			
 			
-			//let p3 = parseInt(results.substring(results.indexOf('3') + 2, results.indexOf(']', results.indexOf('3') + 2)), 10);
 			if(payload[3] == 0){
 				D3 = false;
 			}
@@ -79,7 +76,6 @@ function initializeBooleans(){
 			setButtonColor("btn3", D3);
 			
 			
-			//let p4 = parseInt(results.substring(results.indexOf('4') + 2, results.indexOf(']', results.indexOf('4') + 2)), 10);
 			if(payload[4] == 0){
 				D4 = false;
 			}
@@ -92,7 +88,6 @@ function initializeBooleans(){
 			setButtonColor("btn4", D4);
 			
 			
-			//let p5 = parseInt(results.substring(results.indexOf('5') + 2, results.indexOf(']', results.indexOf('5') + 2)), 10);
 			if(payload[5] == 0){
 				D5 = false;
 			}
@@ -105,7 +100,6 @@ function initializeBooleans(){
 			setButtonColor("btn5", D5);
 			
 			
-			//let p6 = parseInt(results.substring(results.indexOf('6') + 2, results.indexOf(']', results.indexOf('6') + 2)), 10);
 			if(payload[6] == 0){
 				D6 = false;
 			}
@@ -118,7 +112,6 @@ function initializeBooleans(){
 			setButtonColor("btn6", D6);
 			
 			
-			//let p7 = parseInt(results.substring(results.indexOf('7') + 2, results.indexOf(']', results.indexOf('7') + 2)), 10);
 			if(payload[7] == 0){
 				D7 = false;
 			}
@@ -131,7 +124,6 @@ function initializeBooleans(){
 			setButtonColor("btn7", D7);
 			
 			
-			//let p8 = parseInt(results.substring(results.indexOf('8') + 2, results.indexOf(']', results.indexOf('8') + 2)), 10);
 			if(payload[8] == 0){
 				D8 = false;
 			}
@@ -158,6 +150,7 @@ function setButtonColor(btn, st){
 	}
 	else{
 		b.style.backgroundColor = "yellow";
+		// maybe work value into the button label somehow
 	}
 	
 }
@@ -292,7 +285,6 @@ function clearResults(){
 }
 
 function updateBooleanQuery(script, pin, state){
-    //let data = document.getElementById('query').value;
     let results = document.getElementById('results');
 	let query = "UPDATE booleanControl SET status = " + state + " WHERE pinNumber = " + pin;
     let request = new XMLHttpRequest();

@@ -6,7 +6,6 @@
     try{
         $conn = new PDO("mysql:host=$DBHost;dbname=$DBName", $DBUsername, $DBPassword);
         
-		//$query = change the status for a particular pin in the database
 		$select = $conn->prepare($query);
         $select->execute();
         $data = $select->fetchAll(PDO::FETCH_ASSOC);
