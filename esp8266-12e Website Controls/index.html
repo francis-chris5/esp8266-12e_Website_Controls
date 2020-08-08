@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html>
+	
+	<head>
+		<title>ESP 8266</title>
+		<link rel="stylesheet" type="text/css" href="esp8266.css"/>
+		<script src="esp8266.js"></script>
+	</head>
+	
+	
+	<body onload="start()">
+		<header>
+			<h1>ESP 8266 WI-FI Microcontroller</h1>
+		</header>
+	
+		<section class="controlSector">
+			<p class="title">Boolean Control</p>
+			<p class="instructions">Click the button to toggle a control on or off, the microcontroller will grab the states from the database shortly and adjust accordingly</p>
+			<p class="instructions">For Pulse Width Modulation: select the PWM checkbox, set the slider to the desired value and then click the button for the desired pin</p>
+			<p><input type="checkbox" id="pwmCheck"/>PWM</p>
+			<p><input type="range" min="0" max="255" id="pwmSlider" onchange="updateSlider()" value="0"/><span id="pwmValue">0</span></p></p>
+			<p>
+				<button onclick="togglePin('btn0', 0)" id="btn0">D0</button>
+				<button onclick="togglePin('btn1', 1)" id="btn1">D1</button>
+				<button onclick="togglePin('btn2', 2)" id="btn2">D2</button>
+				<button onclick="togglePin('btn3', 3)" id="btn3">D3</button>
+				<button onclick="togglePin('btn4', 4)" id="btn4">D4</button>
+				<button onclick="togglePin('btn5', 5)" id="btn5">D5<br><span id="lbl5"></span></button>
+				<button onclick="togglePin('btn6', 6)" id="btn6">D6</button>
+				<button onclick="togglePin('btn7', 7)" id="btn7">D7</button>
+				<button onclick="togglePin('btn8', 8)" id="btn8">D8</button>
+			</p>
+			<p><span id="results"></span> <button onclick="clearResults()">Clear</button></p>
+			<!--<p><a href="tx_boolean.php" target="_blank">check transmission</a></p>-->
+		</section>
+		
+		
+		<section class="controlSector">
+			<p class="title">Text Control</p>
+			<p class="instructions">Input one of the predetermined command words, then click 'Send' to send the instruction immediately. it will have a status of 'HOLD' and after the microcontroller has received the command the status in the database will change to 'SENT'</p>
+			<p>
+				<input type="text" name="command" id="command" placeholder="Enter Command"/>
+				<button onclick="sendCommand()">Send</button>
+			</p>
+			<p><span id="textResults"></span> <button onclick="clearTextResults()">Clear</button></p>
+			<!--<p><a href="tx_command.php" target="_blank">check transmission</a></p>-->
+		</section>
+		
+		
+		<section class="controlSector">
+			<p class="title">Output Display</p>
+			<p class="instructions">The default here simply shows the current state of the database, this will certainly need customized for a particular use though.</p>
+			<p class="instructions">The access log will show the timestamp of when this page was last (re)loaded, or when the microcontroller last retrieved the instruction set from the database.</p>
+			<p><button onclick="updateDisplay()">Update Display</button></p>
+			<p><span id="output"></span></p>
+		</section>
+	
+	</body>
+
+</html>
