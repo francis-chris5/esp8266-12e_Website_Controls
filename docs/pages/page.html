@@ -14,6 +14,7 @@
 		<content>
 			<header>
 				<h1>ESP8266-12E Starter Website Files</h1>
+				<h3>Starter File User-Interface</h3>
 			</header>
 			
 			<nav class="columnNav">
@@ -21,7 +22,7 @@
 				<details open="open">
 					<summary>Client Side</summary>
 					<p><a href="page.html">Web Page</a></p>
-					<p><a href="ajax.html">Javascript/AJAX</a></p>
+					<p><a href="ajax.html">JavaScript/AJAX</a></p>
 				</details>
 				<details open="open">
 					<summary>Server Side</summary>
@@ -45,7 +46,83 @@
 			</nav>
 			
 			<section class="mainContent">
-				<p>placeholder for content descriptions</p>
+				<p><h3>Description</h3></p>
+				<p>The default user interface in the starter files is organized into three sections. <strong>Boolean Control</strong> is used to toggle the ON, OFF, and PWM states of the control pins on the microcontroller. <strong>Text Control</strong> is used to send String based commands to the microcontroller. <strong>Output Display</strong> is used to observe the current state of the database. See the <a href="#layout">image below</a> for labeling referred to on this page.</p>
+				<p>This page will work for testing things, though for custom projects it is probably best used as a reference example for when and how to call the functions communicating with the database.</p>
+				
+				<p><h3>Operation</h3></p>
+				<dl>
+					<dt>Boolean Control</dt>
+					<dd>
+						<ul>
+							<li>
+								<ul>PWM Selector
+									<li>Check this option to pass a PWM signal rather than a boolean On/Off value</li>
+									<li>If a pin is selected which does not support PWM then a message to that effect will be echoed back from the script</li>
+								</ul>
+							</li>
+							<li>
+								<ul>PWM Value
+									<li>Use this slider to select duty cycle level of the PWM assignment</li>
+									<li>The the starter files used 8-bit resolution even though ESP8266-12E NodeMCU can process 10-bit resolution (0-1023). Be aware there is a reliability trade off between PWM resolution and frequency it can be used at when customizing this value if devices will be toggled on and off approcahing max clock speed of the microcontroller.</li>
+								</ul>
+							</li>
+							<li>
+								<ul>Boolean Controls
+									<li>Use these buttons to toggle the ON, OFF, or PWM state of the control pins on the ESP8266-12E NodeMCU</li>
+									<li>The background color of the buttons will change to green, yellow, or red to indicate on, pwm, or off respectively</li>
+								</ul>
+							</li>
+							<li>
+								<ul>Clear Echo
+									<li>Use this button to clear the messages returned afer operating the controls in this section</li>
+								</ul>
+							</li>
+						</ul>
+					</dd>
+					
+					<dt>Text Control</dt>
+					<dd>
+						<ul>
+							<li>
+								<ul>Command Input
+									<li>Type in the text-based command to control the microcontroller here</li>
+									<li>The command keywords need set up when programming the microcontroller for a particular project</li>
+								</ul>
+							</li>
+							<li>
+								<ul>Send Command
+									<li>Click this button to send the text-based command to the database to be processed by the microcontroller</li>
+									<li>To upgrade to voice commands send the output from IFTTT script into the JavaScript function called by this button, or pass it to the php script called by that function (<a href="text.html">textControl</a>).</li>
+								</ul>
+							</li>
+							<li>
+								<ul>Clear Echo
+									<li>Use this button to clear the messages returned after operating the controls in this section</li>
+								</ul>
+							</li>
+						</ul>
+					</dd>
+					
+					<dt>Output Display</dt>
+					<dd>
+						<ul>
+							<li>
+								<ul>Refresh Data Display
+									<li>Click this button to retrieve the current state of the database</li>
+									<li>The display does not refresh automatically in the starter files</li>
+								</ul>
+							</li>
+							<li>
+								<ul>Clear Processed Commands
+								<li>Clicking this button will remove all commands from the database with a status of 'SENT' which indicates the microcontroller has already received them</li>
+								<li>Commands with a status of 'HOLD' will remain in the database</li>
+							</li>
+						</ul>
+					</dd>
+				</dl>
+				<p id="layout"><h3>Layout</h3></p>
+				<p><img src="../images/user_interface.PNG"/></p>
 			</section>
 			
 			<footer>
