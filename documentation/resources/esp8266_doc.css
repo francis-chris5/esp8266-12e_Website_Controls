@@ -1,0 +1,42 @@
+
+
+html{
+	min-height: 100%;
+	font-size: 12pt;
+}
+
+
+.columnNav{
+	float: left;
+	width: 18%;
+	min-height: 25em;
+	padding-left: 2.5em;
+}
+
+.columnNav details p{
+	padding-left: 3em;
+}
+
+summary{
+	outline: none;
+}
+
+header{
+	text-align: center;
+}
+
+.mainContent{
+	margin-left: 20%;
+	padding-left: 3em;
+	padding-top: 1.5em;
+	padding-right: 3em;
+	min-height: 25em;
+	
+	border-left: 2px groove green;
+}
+
+
+footer{
+	clear: left;
+	text-align: center;
+}
