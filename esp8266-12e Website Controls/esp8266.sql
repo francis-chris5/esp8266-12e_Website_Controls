@@ -1,5 +1,7 @@
 
+/*
 CREATE DATABASE esp8266;
+*/
 
 CREATE TABLE booleanControl(pinID VARCHAR(4), pinNumber INTEGER, device VARCHAR(64), pinName VARCHAR(32), status INTEGER);
 INSERT INTO booleanControl(pinID, pinNumber, device, pinName, status) VALUES("D0", 0, "nothing", "GPIO16", 0);
