@@ -53,7 +53,7 @@
 				<p>A MySQL (MariaDB) database does most of the work by keeping track of the state each control pin should be in, along with sensor data returned from the microcontroller. The webpage accesses php scripts to update the state values in the database via buttons or text-commands, and displays the values currently stored in the database. The microcontroller routinely accesses the php scripts to query the database with updated sensor data or retreive the state values the control pins should be in, and adjusts the controls accordingly.</p>
 				
 				<p><h3>Microcontroller</h3></p>
-				<p>When programming an ESP8266-12E I typically use the Arduino IDE, the pins are accessed either through the ID printed on the silkscreen on the PCB (goes with DevBoard), the integer value in the GPIO name (goes with bootloader), or when available the connection number (goes with chip -not referenced in database here).</p>
+				<p>When programming an ESP8266-12E I typically use the Arduino IDE, the pins are accessed either through the ID printed on the silkscreen on the PCB (goes with DevBoard), the integer value in the GPIO name (goes with bootloader), or where available the connection number (goes with chip -not referenced in database here).</p>
 				<p>The following pinout diagram shows the board model I have been using at the time of creating this documentation, please note this is not the only model of ESP8266-12E NodeMCU DevBoard.</p>
 				<p><img src="images/esp8266-12e_pinout.png"/>
 			</section>
