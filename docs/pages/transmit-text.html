@@ -45,7 +45,49 @@
 			</nav>
 			
 			<section class="mainContent">
-				<p>placeholder for content descriptions</p>
+				<p><h3>Description</h3></p>
+				<p>The transmit text script is used to transfer state values of each instruction keyword (particular to a project) as it is stored in the database. This can be used for the obvious purpose of updating the state of the microcontroller, as well as updating the user interface aspect of the web page.</p>
+				<p>The starter files here only have a place in the database for these. Keyword instructions will need to be set up in a particular project, and then can be passed into the database via the text control on the web page.</p>
+				
+				<p><h3>Paramaters</h3></p>
+				<dl>
+					<dt>mode<dt>
+					<dd>The mode value passed in with the URL determines how the data is to be transmitted</dd>
+					<dd>
+						<ul>
+							<li>
+								<ul>x
+									<li>returns the data in xml format</li>
+									<li>the default value if no mode is set in the URL</li>
+								</ul>
+							</li>
+							<li>
+								<ul>j
+									<li>returns the data in json format</li>
+								</ul>
+							</li>
+							<li>
+								<ul>c
+									<li>returns the data in csv format</li>
+									<li>NOTE: it is not a .csv file, just that format with linebreaks to easily create a csv file with headers or split into an associative array</li>
+								</ul>
+							</li>
+							<li>
+								<ul>k
+									<li>returns the data in a custom format</li>
+									<li>the default is a comma delimited list of status values given in the order of pinNumber as listed in the database</li>
+									<li>Personally I modify this if the data needs to be secured, if an outsider doesn't know the format the data is being transferred in there is one more step to decrpyting it</li>
+								</ul>
+							</li>
+						</ul>
+					</dd>
+				</dl>
+				
+				<p><h3>Returns</h3></p>
+				<dl>
+					<dt>String</dt>
+					<dl>formatted as determined by the mode paramater</dl>
+				</dl>
 			</section>
 			
 			<footer>
