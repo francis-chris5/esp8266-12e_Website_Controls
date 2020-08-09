@@ -16,7 +16,7 @@ INSERT INTO booleanControl(pinID, pinNumber, device, pinName, status) VALUES("D8
 
 
 CREATE TABLE textControl(comID INTEGER PRIMARY KEY AUTO_INCREMENT, command VARCHAR(64), status ENUM("HOLD", "SENT"));
-INSERT INTO textControl(command, status) VALUES(0, "ready", "HOLD");
+INSERT INTO textControl(command, status) VALUES("ready", "HOLD");
 
 
 
