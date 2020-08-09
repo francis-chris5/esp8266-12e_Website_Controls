@@ -198,7 +198,7 @@ function togglePin(btn, p){
 			case 2:
 				D2 = document.getElementById('pwmSlider').value;
 				setButtonColor(btn, D2);
-				updateBooleanQuery("booleanControl", p, D2);
+				updateBooleanQuery(p, D2);
 				break;
 			case 3:
 				document.getElementById('results').innerHTML = "Pin D3 on an ESP8266-12E does not support PWM";
@@ -209,12 +209,12 @@ function togglePin(btn, p){
 			case 5:
 				D5 = document.getElementById('pwmSlider').value;
 				setButtonColor(btn, D5);
-				updateBooleanQuery("booleanControl", p, D5);
+				updateBooleanQuery(p, D5);
 				break;
 			case 6:
 				D6 = document.getElementById('pwmSlider').value;
 				setButtonColor(btn, D6);
-				updateBooleanQuery("booleanControl", p, D6);
+				updateBooleanQuery(p, D6);
 				break;
 			case 7:
 				document.getElementById('results').innerHTML = "Pin D7 on an ESP8266-12E does not support PWM";
@@ -222,7 +222,7 @@ function togglePin(btn, p){
 			case 8:
 				D8 = document.getElementById('pwmSlider').value;
 				setButtonColor(btn, D8);
-				updateBooleanQuery("booleanControl", p, D8);
+				updateBooleanQuery(p, D8);
 				break;
 			default:
 				//don't do anything
@@ -235,12 +235,12 @@ function togglePin(btn, p){
 			case 0:
 				D0 = !D0;
 				setButtonColor(btn, D0);
-				updateBooleanQuery("booleanControl", p, D0);
+				updateBooleanQuery(p, D0);
 				break
 			case 1:
 				D1 = !D1;
 				setButtonColor(btn, D1);
-				updateBooleanQuery("booleanControl", p, D1);
+				updateBooleanQuery(p, D1);
 				break
 			case 2:
 				if(D2 == true || D2 == false){
@@ -250,17 +250,17 @@ function togglePin(btn, p){
 					D2 = false;
 				}
 				setButtonColor(btn, D2);
-				updateBooleanQuery("booleanControl", p, D2);
+				updateBooleanQuery(p, D2);
 				break;
 			case 3:
 				D3 = !D3;
 				setButtonColor(btn, D3);
-				updateBooleanQuery("booleanControl", p, D3);
+				updateBooleanQuery(p, D3);
 				break
 			case 4:
 				D4 = !D4;
 				setButtonColor(btn, D4);
-				updateBooleanQuery("booleanControl", p, D4);
+				updateBooleanQuery(p, D4);
 				break
 			case 5:
 				if(D5 == true || D5 == false){
@@ -270,7 +270,7 @@ function togglePin(btn, p){
 					D5 = false;
 				}
 				setButtonColor(btn, D5);
-				updateBooleanQuery("booleanControl", p, D5);
+				updateBooleanQuery(p, D5);
 				break;
 			case 6:
 				if(D6 == true || D6 == false){
@@ -280,12 +280,12 @@ function togglePin(btn, p){
 					D6 = false;
 				}
 				setButtonColor(btn, D6);
-				updateBooleanQuery("booleanControl", p, D6);
+				updateBooleanQuery(p, D6);
 				break;
 			case 7:
 				D7 = !D7;
 				setButtonColor(btn, D7);
-				updateBooleanQuery("booleanControl", p, D7);
+				updateBooleanQuery(p, D7);
 				break
 			case 8:
 				if(D8 == true || D8 == false){
@@ -295,7 +295,7 @@ function togglePin(btn, p){
 					D8 = false;
 				}
 				setButtonColor(btn, D8);
-				updateBooleanQuery("booleanControl", p, D8);
+				updateBooleanQuery(p, D8);
 				break;
 			default:
 				//don't do anything
@@ -314,11 +314,11 @@ function clearResults(){
 	document.getElementById('results').innerHTML = "";
 }
 
-function updateBooleanQuery(script, pin, state){
+function updateBooleanQuery(pin, state){
     let results = document.getElementById('results');
 	let query = "UPDATE booleanControl SET status = " + state + " WHERE pinNumber = " + pin;
     let request = new XMLHttpRequest();
-	request.open("POST", script + ".php?query=" + query, true);
+	request.open("POST", "booleanControl.php?query=" + query, true);
 	request.send();
 	request.onreadystatechange = function(){
 		if(request.readyState == 4 && request.status == 200){
