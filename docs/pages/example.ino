@@ -1,69 +1,17 @@
-<!DOCTYPE html>
 
-<html>
-
-	<head>
-		<title> CSF_Controls ESP8266-12E</title>
-		<link rel="stylesheet" type="text/css" href="../resources/esp8266_doc.css"/>
-		<script src="../resources/esp8266_doc.js"></script>
-	</head>
-	
-	
-	<body>
-		
-		<content>
-			<header>
-				<h1>ESP8266-12E Starter Website Files</h1>
-			</header>
-			
-			<nav class="columnNav">
-				<p><a href="../index.html">Home</a></p>
-				<details open="open">
-					<summary>Client Side</summary>
-					<p><a href="page.html">Web Page</a></p>
-					<p><a href="ajax.html">Javascript/AJAX</a></p>
-				</details>
-				<details open="open">
-					<summary>Server Side</summary>
-					<p><a href="transmit-boolean.html">tx_boolean</a></p>
-					<p><a href="transmit-text.html">tx_command</a></p>
-					<p><a href="receive-sensor.html">rx_sensor</a></p>
-					<p><a href="connect.html">connectionDetails</a></p>
-					<p><a href="boolean.html">booleanControl</a></p>
-					<p><a href="text.html">textControl</a></p>
-					<p><a href="remove.html">removeCommands</a></p>
-					<p><a href="update.html">updateDisplay</a></p>
-				</details>
-				<details open="open">
-					<summary>Database</summary>
-					<p><a href="sql.html">SQL</a></p>
-				</details>
-				<details open="open">
-					<summary>Microcontroller</summary>
-					<p><a href="example.html">Example</a></p>
-				</details>
-			</nav>
-			
-			<section class="mainContent">
-				<p>The following example parses through the data from an HTTP request in JSON format, and uses that data to turn On/Off or set PWM level of an LED for a simple example. The key part of the example is supposed to be making and parsing through an HTTP request. Once you have the data you can find much more interesting examples of what to control with it all over the internet.</p>
-				<p><a href="example.ino">open just the .ino example to view or copy and paste rather than download</a>. Just make sure to reset the values for the site URL and access point, as well as install any libraries you don't already have.</p>
-				<p>
-				<pre>
-					<code>
-						
 /*
  * Libraries needed to make an HTTP request
  */
-#include "Arduino.h"
-#include "ESP8266WiFi.h"
-#include "ESP8266WiFiMulti.h"
-#include "ESP8266HTTPClient.h"
-#include "WiFiClient.h"
+#include <Arduino.h>
+#include <ESP8266WiFi.h>
+#include <ESP8266WiFiMulti.h>
+#include <ESP8266HTTPClient.h>
+#include <WiFiClient.h>
 
   /*
    * Library to parse through JSON data
    */
-#include "ArduinoJson.h"
+#include <ArduinoJson.h>
 
 
 ESP8266WiFiMulti WiFiMulti;
@@ -73,7 +21,7 @@ ESP8266WiFiMulti WiFiMulti;
    * URL's to connect to, splitting into parts to concatenate 
    * as needed is often a good idea, though not necessary
    */
-String baseURL = "URL STARTER FILES ARE HOSTED AT -use http not https";
+String baseURL = "<URL STARTER FILES ARE HOSTED AT -use http not https>";
 String rx_boolean = "tx_boolean.php?mode=j";
 
 
@@ -111,7 +59,7 @@ void setup() {
    * connect to the WiFi access point
    */
   WiFi.mode(WIFI_STA);
-  WiFiMulti.addAP("WI-FI ACCESS POINT", "WI-FI PASSWORD");
+  WiFiMulti.addAP("<WI-FI ACCESS POINT>", "<WI-FI PASSWORD>");
 }//end setup()
 
 
@@ -221,18 +169,3 @@ void processRawData(String payload){
   }
 
 }//end processRawData
-
-					</code>
-				</pre>
-			</section>
-			
-			<footer>
-				<small>&#169; CSF_Controls 2020</small>
-			</footer>
-			
-		</content>
-	</body>
-
-
-
-</html>
