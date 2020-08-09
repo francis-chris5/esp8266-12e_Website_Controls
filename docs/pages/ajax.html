@@ -45,7 +45,164 @@
 			</nav>
 			
 			<section class="mainContent">
-				<p>placeholder for content descriptions</p>
+				<p><h3>Description</h3></p>
+				<p>All of the page updates are handled with Asynchronous JavaScript And XML (AJAX) rather than submitting forms which will cause the page to reload. If you're not familiar with this, the client side script sends a URL request to a server side script and processes the reply on a per HTML element basis rather than a full document basis.</p>
+				<p>Below is a summary of the JavaScript variables and functions controlling these updates in the starter files.</p>
+				<p><h3>Global Variables</h3></p>
+					<dl>
+						<dt>D0, D1, D2, D3, D4, D5, D6, D7, D8</dt>
+						<dd>Variables to hold state data of the corresponding pin on the microcontroller and button in the boolean control section of the web page</dd>
+					</dl>
+				<p><h3>Functions</h3></p>
+					<dl>
+						<dt>clearCommands()</dt>
+						<dd>
+							<ul><strong>Description</strong>
+								<li>AJAX request to run <a href="remove.html">removeCommands</a> script</li>
+							</ul>
+							<ul><strong>Parmaters</strong>
+								<li>none</li>
+							</ul>
+							<ul><strong>Returns</strong>
+								<li>void</li>
+							</ul>
+						</dd>
+						<hr>
+						<dt>clearResults()</dt>
+						<dd>
+							<ul><strong>Description</strong>
+								<li>Clears the text displayed from the echo span in the Boolean Control section of the page</li>
+							</ul>
+							<ul><strong>Parmaters</strong>
+								<li>none</li>
+							</ul>
+							<ul><strong>Returns</strong>
+								<li>void</li>
+							</ul>
+						</dd>
+						<hr>
+						<dt>clearTextResults()</dt>
+						<dd>
+							<ul><strong>Description</strong>
+								<li>Clears the text displayed from the echo span in the Text Control section of the page</li>
+							</ul>
+							<ul><strong>Parmaters</strong>
+								<li>none</li>
+							</ul>
+							<ul><strong>Returns</strong>
+								<li>void</li>
+							</ul>
+						</dd>
+						<hr>
+						<dt>initializeBooleans()</dt>
+						<dd>
+							<ul><strong>Description</strong>
+								<li>Called when page is first loaded. This function makes an AJAX request for the state data of the pins on the microcontroller as stored in the database</li>
+								<li>It is set up with XML data returned from the server, but an example is included (commented out) for using JSON format instead (change the mode to 'j' in the request sent to the server for this)</li>
+							</ul>
+							<ul><strong>Parmaters</strong>
+								<li>none</li>
+							</ul>
+							<ul><strong>Returns</strong>
+								<li>void</li>
+							</ul>
+						</dd>
+						<hr>
+						<dt>sendCommand()</dt>
+						<dd>
+							<ul><strong>Description</strong>
+								<li>Passes the text-based commands entered on the webpage to the <a href="text.html">textControl</a> php script</li>
+							</ul>
+							<ul><strong>Parmaters</strong>
+								<li>none</li>
+							</ul>
+							<ul><strong>Returns</strong>
+								<li>void</li>
+							</ul>
+						</dd>
+						<hr>
+						<dt>setButtonColor(btn, st)</dt>
+						<dd>
+							<ul><strong>Description</strong>
+								<li>Updates the background color of the HTML button elements to reflect current status stored in the database</li>
+							</ul>
+							<ul><strong>Parmaters</strong>
+								<li>btn: String format of id attribute for the button to update</li>
+								<li>st: Integer data for the current status of the corresponding pin on the microcontroller</li>
+							</ul>
+							<ul><strong>Returns</strong>
+								<li>void</li>
+							</ul>
+						</dd>
+						<hr>
+						<dt>start()</dt>
+						<dd>
+							<ul><strong>Description</strong>
+								<li>Initialization method that runs when the page is first loaded. Currently it only calls the initializeBooleans() function</li>
+							</ul>
+							<ul><strong>Parmaters</strong>
+								<li>none</li>
+							</ul>
+							<ul><strong>Returns</strong>
+								<li>void</li>
+							</ul>
+						</dd>
+						<hr>
+						<dt>togglePin(btn, p)</dt>
+						<dd>
+							<ul><strong>Description</strong>
+								<li>Updates the database each time one of the buttons in the Boolean Control section is activated</li>
+							</ul>
+							<ul><strong>Parmaters</strong>
+								<li>btn: String format of id attribute for the button to update</li>
+								<li>p: Integer number of the pin to update the value of in the database (corresponds to pinNumber field in the table)</li>
+							</ul>
+							<ul><strong>Returns</strong>
+								<li>void</li>
+							</ul>
+						</dd>
+						<hr>
+						<dt>updateBooleanQuery(pin, state)</dt>
+						<dd>
+							<ul><strong>Description</strong>
+								<li>Makes the AJAX request for the <a href="boolean.html">booleanControl</a> script</li>
+							</ul>
+							<ul><strong>Parmaters</strong>
+								<li>pin: Integer representation of the pin to update the status of</li>
+								<li>state: the value to change the status field in the database to</li>
+							</ul>
+							<ul><strong>Returns</strong>
+								<li>void</li>
+							</ul>
+						</dd>
+						<hr>
+						<dt>updateDisplay()</dt>
+						<dd>
+							<ul><strong>Description</strong>
+								<li>Refreshes the data displayed on the web page by making the AJAX request to the <a href="update.html">updateDisplay</a> script</li>
+							</ul>
+							<ul><strong>Parmaters</strong>
+								<li>none</li>
+							</ul>
+							<ul><strong>Returns</strong>
+								<li>void</li>
+							</ul>
+						</dd>
+						<hr>
+						<dt>updateSlider()</dt>
+						<dd>
+							<ul><strong>Description</strong>
+								<li>Updates the value displayed next to the PWM Value control in the Boolean Control section everytime the slider is moved</li>
+							</ul>
+							<ul><strong>Parmaters</strong>
+								<li>none</li>
+							</ul>
+							<ul><strong>Returns</strong>
+								<li>void</li>
+							</ul>
+						</dd>
+						<hr>
+					</dl>
 			</section>
 			
 			<footer>
