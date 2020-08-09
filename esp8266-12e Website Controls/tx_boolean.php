@@ -21,6 +21,25 @@
 		
 		if($mode == "x"){
 				//in xml format
+			$xml = new DOMDocument("1.0", "UTF-8");
+			$root = $xml->createElement("GPIO");
+			$root = $xml->appendChild($root);
+			foreach ($data as $row){
+				$pin = $xml->createElement("pin");
+				$pin = $root->appendChild($pin);
+				$pin->appendChild($xml->createElement("pinID", $row['pinID']));
+				$pin->appendChild($xml->createElement("pinNumber", $row['pinNumber']));
+				$pin->appendChild($xml->createElement("device", $row['device']));
+				$pin->appendChild($xml->createElement("pinName", $row['pinName']));
+				$pin->appendChild($xml->createElement("status", $row['status']));
+			}
+			header("Content-type: text/xml; charset=utf-8");
+			echo $xml->saveXML();
+			
+			
+			
+			/*
+				//just the format not the file
 			echo "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
 			echo "<GPIO>\n";
 			foreach($data as $row){
@@ -33,9 +52,13 @@
 				echo "\t</pin>\n\n";
 			}
 			echo "</GPIO>\n";
+			*/
 		}
 		else if($mode == "j"){
 				//in json format
+				
+			
+				//just the format not the file
 			foreach($data as $row){
 				echo "{";
 				echo "\"pinID\": \"".$row['pinID']."\", ";
@@ -44,6 +67,7 @@
 				echo "\"pinName\": \"".$row['pinName']."\", ";
 				echo "\"status\": ".$row['status']."}\n";
 			}
+			
 		}
 		else if($mode == "c"){
 				//in csv format

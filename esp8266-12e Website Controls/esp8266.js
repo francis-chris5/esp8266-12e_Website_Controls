@@ -21,117 +21,117 @@ function start(){
 
 function initializeBooleans(){
 	let request = new XMLHttpRequest();
-	request.open("POST", "tx_boolean.php?mode=k", true);
+	request.open("POST", "tx_boolean.php?mode=x", true);
 	request.send();
 	request.onreadystatechange = function(){
 		if(request.readyState == 4 && request.status == 200){
-			let results = request.responseText;
-			let payload = results.split(",");
+			let data = request.responseXML;
+			let payload = data.getElementsByTagName('status');
 
-			if(payload[0] == 0){
+			if(payload[0].childNodes[0].nodeValue == 0){
 				D0 = false;
 			}
-			else if(payload[0] == 1){
+			else if(payload[0].childNodes[0].nodeValue == 1){
 				D0 = true;
 			}
 			else{
-				D0 = payload[0];
+				D0 = payload[0].childNodes[0].nodeValue;
 			}
 			setButtonColor("btn0", D0);
 			
 			
-			if(payload[1] == 0){
+			if(payload[1].childNodes[0].nodeValue == 0){
 				D1 = false;
 			}
-			else if(payload[1] == 1){
+			else if(payload[1].childNodes[0].nodeValue == 1){
 				D1 = true;
 			}
 			else{
-				D1 = payload[1];
+				D1 = payload[1].childNodes[0].nodeValue;
 			}
 			setButtonColor("btn1", D1);
 			
 			
-			if(payload[2] == 0){
+			if(payload[2].childNodes[0].nodeValue == 0){
 				D2 = false;
 			}
-			else if(payload[2] == 1){
+			else if(payload[2].childNodes[0].nodeValue == 1){
 				D2 = true;
 			}
 			else{
-				D2 = payload[2];
+				D2 = payload[2].childNodes[0].nodeValue;
 			}
 			setButtonColor("btn2", D2);
 			
 			
-			if(payload[3] == 0){
+			if(payload[3].childNodes[0].nodeValue == 0){
 				D3 = false;
 			}
-			else if(payload[3] == 1){
+			else if(payload[3].childNodes[0].nodeValue == 1){
 				D3 = true;
 			}
 			else{
-				D3 = payload[3];
+				D3 = payload[3].childNodes[0].nodeValue;
 			}
 			setButtonColor("btn3", D3);
 			
 			
-			if(payload[4] == 0){
+			if(payload[4].childNodes[0].nodeValue == 0){
 				D4 = false;
 			}
-			else if(payload[4] == 1){
+			else if(payload[4].childNodes[0].nodeValue == 1){
 				D4 = true;
 			}
 			else{
-				D4 = payload[4];
+				D4 = payload[4].childNodes[0].nodeValue;
 			}
 			setButtonColor("btn4", D4);
 			
 			
-			if(payload[5] == 0){
+			if(payload[5].childNodes[0].nodeValue == 0){
 				D5 = false;
 			}
-			else if(payload[5] == 1){
+			else if(payload[5].childNodes[0].nodeValue == 1){
 				D5 = true;
 			}
 			else{
-				D5 = payload[5];
+				D5 = payload[5].childNodes[0].nodeValue;
 			}
 			setButtonColor("btn5", D5);
 			
 			
-			if(payload[6] == 0){
+			if(payload[6].childNodes[0].nodeValue == 0){
 				D6 = false;
 			}
-			else if(payload[6] == 1){
+			else if(payload[6].childNodes[0].nodeValue == 1){
 				D6 = true;
 			}
 			else{
-				D6 = payload[6];
+				D6 = payload[6].childNodes[0].nodeValue;
 			}
 			setButtonColor("btn6", D6);
 			
 			
-			if(payload[7] == 0){
+			if(payload[7].childNodes[0].nodeValue == 0){
 				D7 = false;
 			}
-			else if(payload[7] == 1){
+			else if(payload[7].childNodes[0].nodeValue == 1){
 				D7 = true;
 			}
 			else{
-				D7 = payload[7];
+				D7 = payload[7].childNodes[0].nodeValue;
 			}
 			setButtonColor("btn7", D7);
 			
 			
-			if(payload[8] == 0){
+			if(payload[8].childNodes[0].nodeValue == 0){
 				D8 = false;
 			}
-			else if(payload[8] == 1){
+			else if(payload[8].childNodes[0].nodeValue == 1){
 				D8 = true;
 			}
 			else{
-				D8 = payload[8];
+				D8 = payload[8].childNodes[0].nodeValue;
 			}
 			setButtonColor("btn8", D8);
 		}
