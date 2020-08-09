@@ -48,13 +48,11 @@
 			<section class="mainContent">
 				<p><h3>Description</h3></p>
 				<p>This php script is used to remove all text-based commands from the database with a status of 'SENT' which indicates the microcontroller has already received the instruction.</p>
+				<p>Since the <a href="transmit-text.html">tx_command</a> will send all commands whether they've already run or not, it is a good idea to schedule a regular run of this script to clear out old data from that table and future transmissions.</p>
 				<p><h3>Parameters</h3></p>
 					<dl>
-						<dt>command</dt>
+						<dt>None</dt>
 						<dl>
-							<ul>
-								<li>Optional, I think I just forgot to delete this... I'll confirm later</li>
-							</ul>
 						</dl>
 					</dl>
 				<p><h3>Returns</h3></p>
