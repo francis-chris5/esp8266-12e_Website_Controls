@@ -24,26 +24,37 @@
 		
 		
 		if($mode == "x"){
-			//in xml format
-			echo "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
-			echo "<instructions>\n";
+				//in xml format
+			$xml = new DOMDocument("1.0", "UTF-8");
+			$root = $xml->createElement("instructions");
+			$root = $xml->appendChild($root);
 			foreach($data as $row){
-				echo "\t<com>\n";
-				echo "\t\t<comID>".$row['comID']."</comID>\n";
-				echo "\t\t<command>".$row['command']."</command>\n";
-				echo "\t\t<status>".$row['status']."</status>\n";
-				echo "\t</com>\n\n";
+				$com = $xml->createElement("com");
+				$com = $root->appendChild($com);
+				$com->appendChild($xml->createElement("comID", $row['comID']));
+				$com->appendChild($xml->createElement("command", $row['command']));
+				$com->appendChild($xml->createElement("status", $row['status']));
 			}
-			echo "</instructions>\n";
+			header("Content-type: text/xml; charset=utf-8");
+			echo $xml->saveXML();
 		}
 		else if($mode == "j"){
 				//in json format
+			foreach($data as $row){
+				echo json_encode(array("comID"=>$row['comID'], "command"=>$row['command'], "status"=>$row['status']));
+				if(next($data)){
+					echo "\n";
+				}
+			}
+				
+			/*
 			foreach($data as $row){
 				echo "{";
 				echo "\"comID\": ".$row['comID'].", ";
 				echo "\"command\": \"".$row['command']."\", ";
 				echo "\"status\": \"".$row['status']."\"}\n";
 			}
+			*/
 		}
 		else if($mode == "c"){
 							//in csv format

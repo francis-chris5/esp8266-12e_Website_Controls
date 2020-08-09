@@ -1,7 +1,6 @@
 <?php
     require_once("connectionDetails.php");
 
-    $command = $_REQUEST['command'];
 
     try{
         $conn = new PDO("mysql:host=$DBHost;dbname=$DBName", $DBUsername, $DBPassword);

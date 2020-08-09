@@ -25,9 +25,26 @@ function initializeBooleans(){
 	request.send();
 	request.onreadystatechange = function(){
 		if(request.readyState == 4 && request.status == 200){
+			
+				//xml data
 			let data = request.responseXML;
 			let payload = data.getElementsByTagName('status');
+			
+			for(let i = 0; i < payload.length; i++){
+				//document.getElementById('results').innerHTML += payload[i].childNodes[0].nodeValue
+			}
+			
+			/*
+				//JSON data
+			let data = request.responseText;
+			let payload = data.split('\n');
+			
+			for(let i = 0; i < payload.length; i++){
+				//document.getElementById('results').innerHTML += JSON.parse(payload[i]).state;
+			}
+			*/
 
+				//xml example
 			if(payload[0].childNodes[0].nodeValue == 0){
 				D0 = false;
 			}
@@ -39,6 +56,19 @@ function initializeBooleans(){
 			}
 			setButtonColor("btn0", D0);
 			
+			/*
+				//JSON example
+			if(JSON.parse(payload[0]).state == 0){
+				D0 = false;
+			}
+			else if(JSON.parse(payload[0]).state == 1){
+				D0 = true;
+			}
+			else{
+				D0 = JSON.parse(payload[0]).state;
+			}
+			setButtonColor("btn0", D0);
+			*/
 			
 			if(payload[1].childNodes[0].nodeValue == 0){
 				D1 = false;

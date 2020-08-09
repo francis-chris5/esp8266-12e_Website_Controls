@@ -35,42 +35,18 @@
 			}
 			header("Content-type: text/xml; charset=utf-8");
 			echo $xml->saveXML();
-			
-			
-			
-			/*
-				//just the format not the file
-			echo "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
-			echo "<GPIO>\n";
-			foreach($data as $row){
-				echo "\t<pin>\n";
-				echo "\t\t<pinID>".$row['pinID']."</pinID>\n";
-				echo "\t\t<pinNumber>".$row['pinNumber']."</pinNumber>\n";
-				echo "\t\t<device>".$row['device']."</device>\n";
-				echo "\t\t<pinName>".$row['pinName']."</pinName>\n";
-				echo "\t\t<status>".$row['status']."</status>\n";
-				echo "\t</pin>\n\n";
-			}
-			echo "</GPIO>\n";
-			*/
 		}
 		else if($mode == "j"){
 				//in json format
-				
-			
-				//just the format not the file
 			foreach($data as $row){
-				echo "{";
-				echo "\"pinID\": \"".$row['pinID']."\", ";
-				echo "\"pinNumber\": ".$row['pinNumber'].", ";
-				echo "\"device\": \"".$row['device']."\", ";
-				echo "\"pinName\": \"".$row['pinName']."\", ";
-				echo "\"status\": ".$row['status']."}\n";
+				echo json_encode(array("pinID"=>$row['pinID'], "pinNumber"=>$row['pinNumber'], "device"=>$row['device'], "pinName"=>$row['pinName'], "state"=>$row['status']));
+				if(next($data)){
+					echo "\n";
+				}
 			}
-			
 		}
 		else if($mode == "c"){
-				//in csv format
+				//in csv format (NOT A .csv file -a string formated to create file or associative array)
 			echo "pinID,pinNumber,device,pinName,status\n";
 			foreach($data as $row){
 				echo $row['pinID'].",".$row['pinNumber'].",".$row['device'].",".$row['pinName'].",".$row['status']."\n";
