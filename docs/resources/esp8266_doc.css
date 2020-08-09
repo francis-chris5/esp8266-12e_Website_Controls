@@ -45,6 +45,13 @@ dt{
 }
 
 
+pre{
+	background-color: #d4d6d4;
+	margin-left: 3em;
+	margin-right: 3em;
+}
+
+
 footer{
 	clear: left;
 	text-align: center;
