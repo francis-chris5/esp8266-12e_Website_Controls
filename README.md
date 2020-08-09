@@ -1,5 +1,5 @@
 # esp8266-12e_Website_Controls
-These are the starter files I created for IoT projects revolving around an ESP8266-12E DevBoard Microcontroller. It is still a work in progress and has only undergone rudimentary testing, these files are currently probably best used as reference material for your own projects.
+These are the starter files I created for IoT projects revolving around an ESP8266-12E NodeMCU DevBoard. It is still a work in progress and has only undergone rudimentary testing, these files are currently probably best used as reference material for your own projects.
 
 If you wish to use these files it should be sufficient to upload the files to a domain hosting site, create the database, and change connectionDetails.php to reflect the names assigned by the domain host.
 
