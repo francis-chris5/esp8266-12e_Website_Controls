@@ -6,23 +6,26 @@
  * starter files are hosted at, along with the Wi-Fi
  * access point and password
  */
+
 #include <Arduino.h>
 #include <ESP8266WiFi.h>
 #include <ESP8266WiFiMulti.h>
 #include <ESP8266HTTPClient.h>
 #include <WiFiClient.h>
-
 #include <ArduinoJson.h>
 
-
+  //wi-fi access control object
 ESP8266WiFiMulti WiFiMulti;
 
-String baseURL = "URL WHERE STARTER-FILES ARE HOSTED AT";
+  // just like wiring up the parts: receive on this end is transmit on the other and vice versa
+String baseURL = "URL_WHERE_SITE_IS_HOSTED_AT";
 String rx_boolean = "tx_boolean.php?mode=j";
 String rx_command = "tx_command.php?mode=j";
 String removeCommands = "removeCommands.php";
+String booleanControl = "booleanControl.php";
+String tx_sensor = "rx_sensor.php";
 
-
+  // custom structures to handle the data
 struct pin{
   const char* pinID;
   int pinNumber;
@@ -30,9 +33,7 @@ struct pin{
   const char* pinName;
   int state;
 };
-
 typedef struct pin Pin;
-
 Pin esp8266Pins[9];
 
 
@@ -44,16 +45,21 @@ struct com{
 typedef struct com Com;
 Com nextCom;
 
-
+  //led controls
 int blueState = 0;
 int greenState = 0;
 int redState = 0;
 
+  //range finder controls
+int trigger = D7;
+int echo = D8;
 
 
 
 void setup() {
   pinMode(D2, OUTPUT);
+  pinMode(trigger, OUTPUT);
+  pinMode(echo, INPUT);
   pinMode(D5, OUTPUT);
   pinMode(D6, OUTPUT);
   Serial.begin(115200);
@@ -180,6 +186,57 @@ void clearRequest(){
 
 
 /*
+ * This updates the boolean control data, such as from a text-command
+ * so that the control pin doesn't reset on the next pass through the
+ * loop when that table data is processed
+ */
+void updateBooleanRequest(int pin, int state){
+  WiFiClient client;
+  HTTPClient http;
+  String removeURL = baseURL + booleanControl + "?state=" + state + "&pin=" + pin;
+  if(http.begin(client, removeURL)){
+    int httpCode = http.GET();
+    if(httpCode > 0){
+      if(httpCode == HTTP_CODE_OK || httpCode == HTTP_CODE_MOVED_PERMANENTLY){
+        //Serial.println("old commands removed");
+      }
+    }
+    else {
+      Serial.printf("[HTTP] GET... failed, error: %s\n", http.errorToString(httpCode).c_str());
+    }
+  }
+  http.end();
+}
+
+
+
+/*
+ * This sends data from the microcontroller back to the database.
+ */
+void updateSensorRequest(String state){
+  WiFiClient client;
+  HTTPClient http;
+  String removeURL = baseURL + tx_sensor + "?status=" + state + "&pinID=D7";
+  if(http.begin(client, removeURL)){
+    int httpCode = http.GET();
+    if(httpCode > 0){
+      if(httpCode == HTTP_CODE_OK || httpCode == HTTP_CODE_MOVED_PERMANENTLY){
+        //Serial.println("old commands removed");
+      }
+    }
+    else {
+      Serial.printf("[HTTP] GET... failed, error: %s\n", http.errorToString(httpCode).c_str());
+    }
+  }
+  http.end();
+}
+
+
+
+
+
+
+/*
  * This method breaks the payload up by line-breaks,
  * there should be one json object per line, and then
  * parses through the json to put in an array of the
@@ -225,11 +282,8 @@ void processBooleanData(String payload){
  * structure set up with datafields to match the 
  * database. Then sets the on/off state of the pins
  * off of a few keywords.
- * To try and keep the example kind of simple, this is only on
- * for the 8 seconds until the next pass of the loop, it
- * should really follow this up by updating the values in
- * the database so the processBooleanData() method doesn't
- * override it on the next pass.
+ * Any changes here need to update the database as well
+ * so they don't reset on the next pass through the loop.
  */
 void processTextData(String payload){
   DynamicJsonBuffer json(512);
@@ -240,21 +294,30 @@ void processTextData(String payload){
   String command = String(nextCom.command);
   if(command == "BLUE_ON"){
     blueState = 1;
+    updateBooleanRequest(2, 1);
   }
   else if(command == "BLUE_OFF"){
     blueState = 0;
+    updateBooleanRequest(2, 0);
   }
   else if(command == "GREEN_ON"){
     greenState = 1;
+    updateBooleanRequest(5, 1);
   }
   else if(command == "GREEN_OFF"){
     greenState = 0;
+    updateBooleanRequest(5, 0);
   }
   else if(command == "RED_ON"){
     redState = 1;
+    updateBooleanRequest(6, 1);
   }
   else if(command == "RED_OFF"){
     redState = 0;
+    updateBooleanRequest(6, 0);
+  }
+  else if(command == "DISTANCE"){
+    distance();
   }
 }//end processTextData()
 
@@ -297,3 +360,21 @@ void toggleLED(){
     analogWrite(D6, redState);
   }
 }//end toggleLED()
+
+
+/*
+ * Just a method handling a basic ping application,
+ * a.k.a. an ultrasonic range finder sensor module.
+ */
+void distance(){
+  long duration;
+  long inches;
+  digitalWrite(trigger, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigger, HIGH);
+  delayMicroseconds(6);
+  digitalWrite(trigger, LOW);
+  duration = pulseIn(echo, HIGH);
+  inches = duration / 74 / 2;
+  updateSensorRequest(String(inches));
+}//end distance()
