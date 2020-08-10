@@ -316,9 +316,9 @@ function clearResults(){
 
 function updateBooleanQuery(pin, state){
     let results = document.getElementById('results');
-	let query = "UPDATE booleanControl SET status = " + state + " WHERE pinNumber = " + pin;
+	//let query = "UPDATE booleanControl SET status = " + state + " WHERE pinNumber = " + pin;
     let request = new XMLHttpRequest();
-	request.open("POST", "booleanControl.php?query=" + query, true);
+	request.open("POST", "booleanControl.php?state=" + state + "&pin=" + pin, true);
 	request.send();
 	request.onreadystatechange = function(){
 		if(request.readyState == 4 && request.status == 200){

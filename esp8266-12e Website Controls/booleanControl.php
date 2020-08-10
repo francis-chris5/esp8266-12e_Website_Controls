@@ -1,7 +1,20 @@
 <?php
     require_once("connectionDetails.php");
+	
+	if(isset($_REQUEST['state'])){
+		$state = $_REQUEST['state'];
+	}
+	else{
+		$state = "";
+	}
+	if(isset($_REQUEST['pin'])){
+		$pin = $_REQUEST['pin'];
+	}
+	else{
+		$pin = "";
+	}
 
-    $query = $_REQUEST['query'];
+    $query = "UPDATE booleanControl SET status = ".$state." WHERE pinNumber = ".$pin;
 
     try{
         $conn = new PDO("mysql:host=$DBHost;dbname=$DBName", $DBUsername, $DBPassword);
