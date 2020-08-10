@@ -5,4 +5,4 @@ If you wish to use these files it should be sufficient to upload the files to a 
 
 Formal documentation for these starter files can be found at  https://francis-chris5.github.io/esp8266-12e_Website_Controls/.
 
-An earlier draft was used in a video located at https://www.youtube.com/watch?v=jt6ubdUwX80&list=PLBA4kDe4kZOpp6n_HfVZsD--R74wog6-O&index=13
+An earlier draft was used in a video covering the logic and concepts to make an IoT project come to life located at https://www.youtube.com/watch?v=jt6ubdUwX80&list=PLBA4kDe4kZOpp6n_HfVZsD--R74wog6-O&index=13
