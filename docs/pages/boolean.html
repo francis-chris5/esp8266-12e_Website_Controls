@@ -50,13 +50,18 @@
 				<p>This php script updates the status of the control pins in the database each time the user clicks one of the control buttons on the web page.</p>
 				<p><h3>Parameters</h3></p>
 					<dl>
-						<dt>query</dt>
-						<dl>
+						<dt>state</dt>
+						<dd>
 							<ul>
-								<li>The update query is constructed in the JavaScript/AJAX and passed in as a String when the script is called</li>
-								<li>this parameter could be used to run any SQL query on the database</li>
+								<li>The integer value to assign to the pin: 1 for On/True etc., 0 for Off/False etc., 0-255 for PWM.</li>
 							</ul>
-						</dl>
+						</dd>
+						<dt>pin</dt>
+						<dd>
+							<ul>
+								<li>The control pin on the microcontroller to change the output value of.</li>
+							</ul>
+						</dd>
 					</dl>
 				<p><h3>Returns</h3></p>
 					<dl>
