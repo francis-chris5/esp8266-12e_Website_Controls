@@ -391,5 +391,6 @@ function updateDisplay(){
 			results.innerHTML = request.responseText;
 		}
 	}
-}
+	initializeBooleans();
+}//end updateDisplay()
 
