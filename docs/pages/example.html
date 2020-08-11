@@ -413,6 +413,8 @@ void processTextData(String payload){
  * This is the method that actually turns LED's on and
  * off after the data from the server has been processed
  * through.
+ * I chose to simply ignore the case of PWM set to 1, that's
+ * pretty much off anyway.
  */
 void toggleLED(){
   if(blueState == 0){
