@@ -18,7 +18,7 @@
 
     try{
         $conn = new PDO("mysql:host=$DBHost;dbname=$DBName", $DBUsername, $DBPassword);
-        $select = $conn->prepare("SELECT * FROM textControl WHERE 1");
+        $select = $conn->prepare("SELECT * FROM textControl WHERE comID = (SELECT MIN(comID) FROM textControl)");
         $select->execute();
         $data = $select->fetchAll(PDO::FETCH_ASSOC);
 		
@@ -69,11 +69,9 @@
 			}
 			echo "\n";
 		}
-		
-		$update = $conn->prepare("UPDATE textControl SET status = \"SENT\" WHERE 1");
-		$update->execute();
-		$result = $update->fetchAll(PDO::FETCH_ASSOC);
-		
+
+
+
 		$rand = rand(1, 99);
 		$logTime = $conn->prepare("UPDATE lastAccess SET randomValue = ".$rand." WHERE accessID = 0");
 		$logTime->execute();
