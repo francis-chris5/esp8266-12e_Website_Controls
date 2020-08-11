@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title> CSF_Controls ESP8266-12E</title>
+		<link rel="stylesheet" type="text/css" href="../resources/esp8266_doc.css"/>
+		<script src="../resources/esp8266_doc.js"></script>
+	</head>
+	
+	
+	<body>
+		
+		<content>
+			<header>
+				<h1>ESP8266-12E Starter Website Files</h1>
+				<h3>commandReceived<h3>
+			</header>
+			
+			<nav class="columnNav">
+				<p><a href="../index.html">Home</a></p>
+				<details open="open">
+					<summary>Client Side</summary>
+					<p><a href="page.html">Web Page</a></p>
+					<p><a href="ajax.html">JavaScript/AJAX</a></p>
+				</details>
+				<details open="open">
+					<summary>Server Side</summary>
+					<p><a href="transmit-boolean.html">tx_boolean</a></p>
+					<p><a href="transmit-text.html">tx_command</a></p>
+					<p><a href="receive-sensor.html">rx_sensor</a></p>
+					<p><a href="connect.html">connectionDetails</a></p>
+					<p><a href="boolean.html">booleanControl</a></p>
+					<p><a href="text.html">textControl</a></p>
+					<p><a href="received.html">commandReceived</a></p>
+					<p><a href="remove.html">removeCommands</a></p>
+					<p><a href="update.html">updateDisplay</a></p>
+				</details>
+				<details open="open">
+					<summary>Database</summary>
+					<p><a href="sql.html">SQL</a></p>
+				</details>
+				<details open="open">
+					<summary>Microcontroller</summary>
+					<p><a href="example.html">Example</a></p>
+				</details>
+			</nav>
+			
+			<section class="mainContent">
+				<p><h3>Description</h3></p>
+				<p>This php script changes the status in the database for commands that have already been processed by the microcontroller from 'HOLD' to 'SENT' to indicate it is ready to be deleted.</p>
+				<p>The suggested order for processing text commands in each pass of the loop in the microcontroller, which are sent one at a time is: <a href="remove.html">removeCommands</a>, <a href="transmit-text.html">tx_command</a>, and then <a href="received.html">commandReceived</a>. See the <a href="example.html">example</a> page for more details.</p>
+				<p><h3>Parameters</h3></p>
+					<dl>
+						<dt>comID</dt>
+						<dd>
+							<ul>
+								<li>The id field from the database which belongs to the command to relabel with a status of 'SENT'</li>
+							</ul>
+						</dd>
+					</dl>
+				<p><h3>Returns</h3></p>
+					<dl>
+						<dt>void</dt>
+						<dd></dd>
+					</dl>
+			</section>
+			
+			<footer>
+				<small>&#169; CSF_Controls 2020</small>
+			</footer>
+			
+		</content>
+	</body>
+
+
+
+</html>
