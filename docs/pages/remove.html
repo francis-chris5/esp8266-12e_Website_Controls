@@ -32,6 +32,7 @@
 					<p><a href="connect.html">connectionDetails</a></p>
 					<p><a href="boolean.html">booleanControl</a></p>
 					<p><a href="text.html">textControl</a></p>
+					<p><a href="received.html">commandReceived</a></p>
 					<p><a href="remove.html">removeCommands</a></p>
 					<p><a href="update.html">updateDisplay</a></p>
 				</details>
@@ -48,7 +49,8 @@
 			<section class="mainContent">
 				<p><h3>Description</h3></p>
 				<p>This php script is used to remove all text-based commands from the database with a status of 'SENT' which indicates the microcontroller has already received the instruction.</p>
-				<p>Since the <a href="transmit-text.html">tx_command</a> will send all commands whether they've already run or not, it is a good idea to schedule a regular run of this script to clear out old data from that table and future transmissions.</p>
+				<p>Since the <a href="transmit-text.html">tx_command</a> will send only the oldest text-based command entered it is critical to schedule a regular run of this script to clear out old data from that table and future transmissions.</p>
+				<p>The suggested order for processing text commands in each pass of the loop in the microcontroller, which are sent one at a time is: <a href="remove.html">removeCommands</a>, <a href="transmit-text.html">tx_command</a>, and then <a href="received.html">commandReceived</a>. See the <a href="example.html">example</a> page for more details.</p>
 				<p><h3>Parameters</h3></p>
 					<dl>
 						<dt>None</dt>

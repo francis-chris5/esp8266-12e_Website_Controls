@@ -22,6 +22,7 @@ String baseURL = "URL_WHERE_SITE_IS_HOSTED_AT";
 String rx_boolean = "tx_boolean.php?mode=j";
 String rx_command = "tx_command.php?mode=j";
 String removeCommands = "removeCommands.php";
+String commandReceived = "commandReceived.php";
 String booleanControl = "booleanControl.php";
 String tx_sensor = "rx_sensor.php";
 
@@ -229,8 +230,31 @@ void updateSensorRequest(String state){
     }
   }
   http.end();
-}
+}//end updateSensorRequest()
 
+
+
+/*
+ * This method updates the status of text-based commands in the database
+ * to indicate an instruction has been 'SENT' and thus processed
+ */
+void commandProcesseed(String comID){
+  WiFiClient client;
+  HTTPClient http;
+  String removeURL = baseURL + commandReceived + "?comID=" + comID;
+  if(http.begin(client, removeURL)){
+    int httpCode = http.GET();
+    if(httpCode > 0){
+      if(httpCode == HTTP_CODE_OK || httpCode == HTTP_CODE_MOVED_PERMANENTLY){
+        //Serial.println("processed command updated in database");
+      }
+    }
+    else {
+      Serial.printf("[HTTP] GET... failed, error: %s\n", http.errorToString(httpCode).c_str());
+    }
+  }
+  http.end();
+}//end commandProcesseed()
 
 
 
@@ -319,6 +343,7 @@ void processTextData(String payload){
   else if(command == "DISTANCE"){
     distance();
   }
+  commandProcesseed(String(nextCom.comID));
 }//end processTextData()
 
 

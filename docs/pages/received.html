@@ -14,7 +14,7 @@
 		<content>
 			<header>
 				<h1>ESP8266-12E Starter Website Files</h1>
-				<h3>SQL</h3>
+				<h3>connectionDetails<h3>
 			</header>
 			
 			<nav class="columnNav">
@@ -22,7 +22,7 @@
 				<details open="open">
 					<summary>Client Side</summary>
 					<p><a href="page.html">Web Page</a></p>
-					<p><a href="ajax.html">Javascript/AJAX</a></p>
+					<p><a href="ajax.html">JavaScript/AJAX</a></p>
 				</details>
 				<details open="open">
 					<summary>Server Side</summary>
@@ -48,20 +48,21 @@
 			
 			<section class="mainContent">
 				<p><h3>Description</h3></p>
-				<p>This .sql file can be imported, or have its contents copied and pasted, to create the MySQL database used by these starter files. If the domain host does not create the database for you internally uncomment line number 3.</p>
+				<p>This php script changes the status in the database for commands that have already been processed by the microcontroller from 'HOLD' to 'SENT' to indicate it is ready to be deleted.</p>
+				<p>The suggested order for processing text commands in each pass of the loop in the microcontroller, which are sent one at a time is: <a href="remove.html">removeCommands</a>, <a href="transmit-text.html">tx_command</a>, and then <a href="received.html">commandReceived</a>. See the <a href="example.html">example</a> page for more details.</p>
 				<p><h3>Parameters</h3></p>
 					<dl>
-						<dt>None</dt>
-						<dl></dl>
+						<dt>comID</dt>
+						<dd>
+							<ul>
+								<li>The id field from the database which belongs to the command to relabel with a status of 'SENT'</li>
+							</ul>
+						</dd>
 					</dl>
 				<p><h3>Returns</h3></p>
 					<dl>
 						<dt>void</dt>
-						<dl>
-							<ul>
-								<li>Actually, if imported or copied and pasted to create the database it will generate the 'normal' MySQL returns of an integer indicating the number of rows affected by each query. These returns are not used elsewhere in these starter files.</li>
-							</ul>
-						</dl>
+						<dd></dd>
 					</dl>
 			</section>
 			

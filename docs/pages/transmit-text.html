@@ -32,6 +32,7 @@
 					<p><a href="connect.html">connectionDetails</a></p>
 					<p><a href="boolean.html">booleanControl</a></p>
 					<p><a href="text.html">textControl</a></p>
+					<p><a href="received.html">commandReceived</a></p>
 					<p><a href="remove.html">removeCommands</a></p>
 					<p><a href="update.html">updateDisplay</a></p>
 				</details>
@@ -49,7 +50,8 @@
 				<p><h3>Description</h3></p>
 				<p>The transmit text script is used to transfer state values of each instruction keyword (particular to a project) as it is stored in the database. This can be used for the obvious purpose of updating the state of the microcontroller, as well as updating the user interface aspect of the web page.</p>
 				<p>The starter files here only have a place in the database for these. Keyword instructions will need to be set up in a particular project, and then can be passed into the database via the text control on the web page.</p>
-				<p>Since these commands will be stored in the database, and all data in that table will be transferred upon request, it may be prudent to schedule a routine clearing of this table with <a href="remove.html">removeCommands</a> to clear out all commands hat have already been processed.</p>
+				<p>Since all previously entered commands will be stored in the database, and processing a potentially large array on a microcontroller could forseeably pass available RAM, only the oldest record in the table will be transferred upon request. Therefore it is prudent to schedule a routine clearing of this table with <a href="remove.html">removeCommands</a> to clear out all commands hat have already been processed.</p>
+				<p>The suggested order for processing text commands in each pass of the loop in the microcontroller, which are sent one at a time is: <a href="remove.html">removeCommands</a>, <a href="transmit-text.html">tx_command</a>, and then <a href="received.html">commandReceived</a>. See the <a href="example.html">example</a> page for more details.</p>
 				
 				<p><h3>Paramaters</h3></p>
 				<dl>
